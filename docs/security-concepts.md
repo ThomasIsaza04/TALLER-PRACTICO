@@ -44,3 +44,35 @@ Conceptos de Seguridad - API de Tareas
 
     Ejemplo de situación real
     En lugar de escribir manualmente todo el código para verificar el JWT en cada ruta protegida, instalas Passport y con unas pocas líneas de configuración ya tienes todo funcionando. Es como comprar un sistema de alarma completo en lugar de intentar construir uno desde cero con sensores y cables sueltos.
+
+
+# Conceptos de Seguridad
+
+## JWT (JSON Web Tokens)
+
+### ¿Qué es JWT?
+JWT es un estándar abierto (RFC 7519) que define una forma compacta y autónoma de transmitir información de forma segura entre partes como un objeto JSON.
+
+### Estructura de un JWT
+Un JWT consta de tres partes separadas por puntos:
+- **Header**: Contiene el tipo de token y el algoritmo de encriptación
+- **Payload**: Contiene las claims (datos del usuario)
+- **Signature**: Verifica que el token no ha sido alterado
+
+### Implementación en este proyecto
+- Se genera un JWT al hacer login exitoso
+- El token incluye: `sub` (ID del usuario), `userId` y `email`
+- El token expira en 24 horas (`exp`)
+- Se firma con una clave secreta almacenada en variables de entorno
+
+### Uso del token
+El cliente debe incluir el token en las peticiones protegidas:
+```
+Authorization: Bearer <token>
+```
+
+### Variables en el payload
+- `sub`: Subject (ID del usuario)
+- `userId`: ID del usuario (redundante con sub, para compatibilidad)
+- `email`: Email del usuario
+- `exp`: Tiempo de expiración (generado automáticamente por jsonwebtoken)

@@ -76,3 +76,26 @@ Authorization: Bearer <token>
 - `userId`: ID del usuario (redundante con sub, para compatibilidad)
 - `email`: Email del usuario
 - `exp`: Tiempo de expiración (generado automáticamente por jsonwebtoken)
+
+/**
+
+## ¿Por qué usar Passport si ya teníamos un middleware propio?
+
+Aunque el proyecto ya contaba con un middleware personalizado (authenticate) para validar JWT,
+
+Passport ofrece ventajas importantes:
+
+Estandariza la autenticación ― menos código manual y menos errores.
+
+Permite agregar más estrategias en el futuro (Google, GitHub, Local, OAuth, etc.).
+
+Facilita el mantenimiento: las reglas de autenticación están centralizadas.
+
+Maneja automáticamente errores y flujos comunes de validación.
+
+Por este motivo, se decidió mantener ambos métodos:
+
+Passport para las rutas principales /tasks.
+
+Middleware propio para rutas de prueba y compatibilidad legacy.
+*/

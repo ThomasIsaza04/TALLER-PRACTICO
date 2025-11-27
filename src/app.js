@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 app.use("/auth", authRoutes);
 
 
-app.use('/tasks', tasksRoutes);
+app.use('/', tasksRoutes);
 
 // Ruta de prueba
 
